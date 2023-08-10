@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+// IMPORT COMPONENTS
+import LoginScreen from './pages/LoginScreen';
+import ProfileScreen from './pages/ProfileScreen';
+
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>MY BASIC SOCIAL MEDIA CHAT APP!</Text>
       <StatusBar style="auto" />
+      <LoginScreen/>
+      {/* <ProfileScreen/> */}
     </View>
   );
 }

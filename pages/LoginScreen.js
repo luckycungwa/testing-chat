@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Button,
   Linking,
-  Alert,TouchableOpacity,
+  Alert,
+  TouchableOpacity,
 } from "react-native";
 
 // importiung YUP
@@ -17,15 +18,18 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = () => {
-    
+  const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().required().min(8).max(21),
+  });
 
+  const handleSignup = () => {
     schema
       .isValid({
         email: email,
         password: password,
       })
-      .then(valid => {
+      .then((valid) => {
         console.log("Checking credentials");
         if (valid) {
           console.log("Correct credentials");
@@ -42,35 +46,29 @@ const LoginScreen = () => {
       });
   };
 
-  const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-  });
-
   // RENER CONTENTS
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Username/email"
-        onChange={(text) => setEmail(text)} // Handle user input changes
-      />
+      <View style={styles.card}>
+        <TextInput
+          style={styles.input}
+          placeholder="Username/email"
+          onChangeText={(text) => setEmail(text)} // Handle user input changes
+        />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        onChange={(text) => setPassword(text)} // Handle user input changes
-      />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          onChangeText={(text) => setPassword(text)} // Handle user input changes
+        />
 
-      <View style={styles.actionContainer}>
-        <TouchableOpacity
-          style={styles.saveBtn}
-        >
-          <Text style={styles.ctaText}>Login</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.actionContainer}>
+          <TouchableOpacity style={styles.ctaBtn} onPress={handleSignup}>
+            <Text style={styles.ctaText}>Login</Text>
+          </TouchableOpacity>
+        </View>
 
-      {/* <Button
+        {/* <Button
         style={styles.button}
         onPress={() => {
           handleSignup();
@@ -78,14 +76,15 @@ const LoginScreen = () => {
         title="Login"
       /> */}
 
-      <View style={styles.bottomText}>
-        <Text>
-          New account :
-          <Text style={styles.link} onPress={() => Linking.openURL("#")}>
-            sign up here
+        <View style={styles.bottomText}>
+          <Text>
+            New account :
+            <Text style={styles.link} onPress={() => Linking.openURL("#")}>
+              sign up here
+            </Text>
           </Text>
-        </Text>
-        <Text>Forgot password</Text>
+          <Text>Forgot password</Text>
+        </View>
       </View>
     </View>
   );
@@ -101,11 +100,19 @@ const styles = StyleSheet.create({
     maxHeight: 28,
     // maxWidth: 200,
     borderColor: "#000",
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderRadius: 0,
     paddingVertical: 20,
     marginVertical: 8,
     paddingHorizontal: 12,
+  },
+  card: {
+    padding: 16,
+    justifyContent: "space-between",
+    // backgroundColor: "#fdfeff",
+    borderRadius: 12,
+    borderColor: "#1d1d1d",
+    borderWidth: 2,
   },
   bottomText: {
     fontSize: 8,
@@ -121,11 +128,15 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
   ctaBtn: {
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#313131",
     alignItems: "center",
     justifyContent: "center",
     width: "auto",
-    height: 32,
+    height: 34,
+    marginVertical: 16,
+  },
+  ctaText: {
+    color: "#f2f2f2",
   },
 });
 

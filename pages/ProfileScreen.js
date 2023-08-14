@@ -28,7 +28,7 @@ const ProfileScreen = () => {
               <Image
                 style={styles.camIcon}
                 source={{
-                  uri: "https://pics.freeicons.io/uploads/icons/png/17655483781571183080-512.png",
+                  uri: "https://thenounproject.com/api/private/icons/5959211/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0",
                 }}
               />
             </View>
@@ -71,6 +71,7 @@ const ProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  
   container: {
     minWidth: "100%",
     flex: 1,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 150,
     height: 150,
-    backgroundColor: "#ff0",
+    // backgroundColor: "#ff0",
     borderRadius: 100,
     marginLeft: "30%",
     marginTop: 60, 
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#000f88",
+    backgroundColor: "#f9faff",
     position: "absolute",
     bottom: 0,
     right: 0,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   saveBtn: {
-    backgroundColor: "#f2f2f2",
+    Color: "#f2f2f2",
     alignItems: "center",
     justifyContent: "center",
     width: "auto",
